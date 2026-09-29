@@ -1,0 +1,3 @@
+cd to vggt-omega 
+
+then pixi run -e demo python demo_gradio.py --checkpoint .\checkpoints\vggt_omega_1b_512.pt --image-resolution 512

@@ -14,6 +14,13 @@ dependencies = [
     "einops",
     "safetensors",
     "opencv-python",
+    "gradio==5.50.0",
+    "gradio-client==1.14.0",
+    "trimesh>=5.1.0,<6",
+    "matplotlib>=3.11.2,<4",
+    "scipy>=1.17.1,<2",
+    "requests>=2.34.2,<3",
+    "onnxruntime>=1.30.0,<2",
 ]
 
 [project.optional-dependencies]
@@ -54,3 +61,25 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["vggt_omega*"]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["win-64"]
+
+[tool.pixi.dependencies]
+python = "3.12.*"
+
+[tool.pixi.pypi-dependencies]
+vggt-omega = { path = ".", editable = true }
+
+torch = { version = ">=2.6", index = "https://download.pytorch.org/whl/cu124" }
+torchvision = { version = ">=0.21", index = "https://download.pytorch.org/whl/cu124" }
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+curation = { features = ["curation"], solve-group = "default" }
+demo = { features = ["demo"], solve-group = "default" }
+export = { features = ["export"], solve-group = "default" }
+train = { features = ["train"], solve-group = "default" }
+
+[tool.pixi.tasks]
